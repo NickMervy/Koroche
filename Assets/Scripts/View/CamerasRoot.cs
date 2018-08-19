@@ -5,9 +5,8 @@ namespace View
 {
     public class CamerasRoot : ContextView
     {
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
             context = new CamerasContext(this, true);
             context.Start();
         }

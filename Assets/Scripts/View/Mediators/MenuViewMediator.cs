@@ -7,24 +7,24 @@ namespace View
 {
     public class MenuViewMediator : TargetMediator<MenuView>
     {
-        [Inject] public StartJourneySignal StartJourneySignal { get; set; }
+        [Inject] public NewGameButtonClickSignal NewGameButtonClickSignal { get; set; }
         [Inject] public AppExitSignal AppExitSignal { get; set; }
 
         public override void OnRegister()
         {
-            View.SingleplayerButtonClick += HandleSingleplayerButtonClick;
+            View.SingleplayerButtonClick += HandleNewGameButtonClick;
             View.ExitButtonClick += HandleExitButtonClick;
         }
 
         public override void OnRemove()
         {
-            View.SingleplayerButtonClick -= HandleSingleplayerButtonClick;
+            View.SingleplayerButtonClick -= HandleNewGameButtonClick;
             View.ExitButtonClick -= HandleExitButtonClick;
         }
 
-        private void HandleSingleplayerButtonClick()
+        private void HandleNewGameButtonClick()
         {
-            StartJourneySignal.Dispatch();
+            NewGameButtonClickSignal.Dispatch();
         }
 
         private void HandleExitButtonClick()

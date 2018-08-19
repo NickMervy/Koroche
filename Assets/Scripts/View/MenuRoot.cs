@@ -5,9 +5,8 @@ namespace View
 {
     public class MenuRoot : ContextView
     {
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
             context = new MenuContext(this, true);
             context.Start();
         }

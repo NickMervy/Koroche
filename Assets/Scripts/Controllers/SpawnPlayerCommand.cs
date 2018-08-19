@@ -12,8 +12,8 @@ namespace Controllers
 
         public override void Execute()
         {
-            var player = DataService.Prefabs.First(p => p.name == "Player");
-            SpawnService.Spawn(player);
+            var player = DataService.Characters.First(p => p.Id == "Player");
+            SpawnService.Spawn(player.Prefab);
         }
     }
 }

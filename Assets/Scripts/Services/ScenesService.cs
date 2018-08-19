@@ -15,7 +15,24 @@ namespace Services
             Debug.LogFormat(@"Loading started: ""{0}"" ", name);
 
             var operation = SceneManager.LoadSceneAsync(name, loadMode);
-            operation.OnComplete(() => Debug.LogFormat(@"Loading finished: ""{0}"" ", name));
+            operation.OnComplete(() =>
+            {
+                Debug.LogFormat(@"Loading finished: ""{0}"" ", name);
+            });
+
+            return operation;
+        }
+
+        public AsyncOperation LoadAsync(string name, Action callback, LoadSceneMode loadMode = LoadSceneMode.Additive)
+        {
+            Debug.LogFormat(@"Loading started: ""{0}"" ", name);
+
+            var operation = SceneManager.LoadSceneAsync(name, loadMode);
+            operation.OnComplete(() =>
+            {
+                Debug.LogFormat(@"Loading finished: ""{0}"" ", name);
+                callback();
+            });
 
             return operation;
         }
@@ -25,7 +42,24 @@ namespace Services
             Debug.LogFormat(@"Unloading started: ""{0}"" ", name);
 
             var operation = SceneManager.UnloadSceneAsync(name);
-            operation.OnComplete(() => Debug.LogFormat(@"Unloading finished: ""{0}"" ", name));
+            operation.OnComplete(() =>
+            {
+                Debug.LogFormat(@"Unloading finished: ""{0}"" ", name);
+            });
+
+            return operation;
+        }
+
+        public AsyncOperation UnloadAsync(string name, Action callback)
+        {
+            Debug.LogFormat(@"Unloading started: ""{0}"" ", name);
+
+            var operation = SceneManager.UnloadSceneAsync(name);
+            operation.OnComplete(() =>
+            {
+                Debug.LogFormat(@"Unloading finished: ""{0}"" ", name);
+                callback();
+            });
 
             return operation;
         }

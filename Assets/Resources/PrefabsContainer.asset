@@ -11,5 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d0e0e7788cf6b479dacc21e38e5338, type: 3}
   m_Name: PrefabsContainer
   m_EditorClassIdentifier: 
-  _prefabs:
-  - {fileID: 1607877504859968, guid: e5e0d25edcedfa04290cae09439a6d8c, type: 2}
+  _characters:
+  - Name: Player
+    Health: 100
+    Damage: 10
+    MoveSpeed: 10
+    Id: Player
+    Prefab: {fileID: 1607877504859968, guid: e5e0d25edcedfa04290cae09439a6d8c, type: 2}

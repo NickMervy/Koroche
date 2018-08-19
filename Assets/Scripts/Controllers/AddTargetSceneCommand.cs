@@ -2,40 +2,44 @@ using System.Collections;
 using Models;
 using strange.extensions.command.impl;
 using Services;
-using Signals;
 using UniRx;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Controllers
 {
     public class AddTargetSceneCommand : Command
     {
         [Inject] public ScenesService ScenesService { get; set; }
-        [Inject] public ChangeLevelInfo ChangeLevelInfo { get; set; }
-        [Inject] public LoadingSignal LoadingSignal { get; set; }
+        [Inject] public ChangeLevelData ChangeLevelData { get; set; }
 
         public override void Execute()
         {
-            var sceneName = ChangeLevelInfo.TargetScene;
+            Retain();
+            var sceneName = ChangeLevelData.TargetScene;
             if (ScenesService.IsAdded(sceneName))
             {
                 Debug.LogWarningFormat(@"""{0}"" scene is already loaded", sceneName);
                 return;
             }
 
-            Retain();
             var operation = ScenesService.LoadAsync(sceneName);
-            ChangeLevelInfo.Operation = operation;
-            LoadingSignal.Dispatch(ChangeLevelInfo);
-
-            operation.OnComplete(Callback);
+            ChangeLevelData.Operation = operation;
+            Observable.FromMicroCoroutine(_ => LoadingCoroutine(operation)).Subscribe();
         }
 
-        public void Callback()
+        private IEnumerator LoadingCoroutine(AsyncOperation operation)
         {
-            Debug.Log("Released");
-            ScenesService.SetActiveScene(ChangeLevelInfo.TargetScene);
+            operation.allowSceneActivation = false;
+
+            while (!Mathf.Approximately(operation.progress, 0.9f))
+                yield return null;
+
+            OnComplete();
+        }
+
+        private void OnComplete()
+        {
+            Debug.Log("LoadDataCommand released");
             Release();
         }
     }

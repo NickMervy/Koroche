@@ -25,7 +25,7 @@ namespace Controllers
 
         public void Callback()
         {
-            Debug.Log("Released");
+            Debug.Log("AddUISceneCommand Released");
             Release();
         }
     }

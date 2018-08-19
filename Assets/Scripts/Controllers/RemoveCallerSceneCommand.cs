@@ -1,34 +1,31 @@
 using Models;
 using strange.extensions.command.impl;
 using Services;
-using UniRx;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Controllers
 {
     public class RemoveCallerSceneCommand : Command
     {
         [Inject] public ScenesService ScenesService { get; set; }
-        [Inject] public ChangeLevelInfo ChangeLevelInfo { get; set; }
+        [Inject] public ChangeLevelData ChangeLevelData { get; set; }
 
         public override void Execute()
         {
-            var sceneName = ChangeLevelInfo.CallerScene;
+            Retain();
+            var sceneName = ChangeLevelData.CallerScene;
             if (!ScenesService.IsAdded(sceneName))
             {
                 Debug.LogWarningFormat(@"""{0}"" scene is already unloaded", sceneName);
                 return;
             }
 
-            Retain();
-            var operation = ScenesService.UnloadAsync(sceneName);
-            operation.OnComplete(Callback);
+            ScenesService.UnloadAsync(sceneName, OnComplete);
         }
 
-        private void Callback()
+        private void OnComplete()
         {
-            Debug.Log("Released");
+            Debug.Log("LoadDataCommand released");
             Release();
         }
     }

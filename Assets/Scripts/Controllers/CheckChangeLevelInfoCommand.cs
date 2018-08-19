@@ -7,15 +7,15 @@ namespace Controllers
 {
     public class CheckChangeLevelInfoCommand : Command
     {
-        [Inject] public ChangeLevelInfo ChangeLevelInfo { get; set; }
+        [Inject] public ChangeLevelData ChangeLevelData { get; set; }
 
         public override void Execute()
         {
             try
             {
-                if (string.IsNullOrEmpty(ChangeLevelInfo.CallerScene))
+                if (string.IsNullOrEmpty(ChangeLevelData.CallerScene))
                     throw new ArgumentException("", "callerScene");
-                if (string.IsNullOrEmpty(ChangeLevelInfo.TargetScene))
+                if (string.IsNullOrEmpty(ChangeLevelData.TargetScene))
                     throw new ArgumentException("", "targetScene");
             }
 
@@ -25,7 +25,7 @@ namespace Controllers
                 e = new ArgumentNullException(
                     string.Format("Couldn't change level: invalid value in {0}", param));
                 Debug.LogErrorFormat(e.Message);
-                commandBinder.Stop(this);
+                Fail();
                 throw;
             }
         }

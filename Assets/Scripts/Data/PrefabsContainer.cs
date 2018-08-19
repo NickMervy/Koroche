@@ -6,8 +6,8 @@ namespace Models
     [CreateAssetMenu(fileName = "PrefabsContainer", menuName = "Containers/Prefabs Container")]
     public class PrefabsContainer : ScriptableObject
     {
-        [SerializeField] private List<GameObject> _prefabs;
+        [SerializeField] private List<Character> _characters;
 
-        public List<GameObject> Prefabs { get {return _prefabs; } }
+        public List<Character> Characters { get {return _characters; } }
     }
 }

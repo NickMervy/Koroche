@@ -16,7 +16,8 @@ namespace View
 
         public override void OnRemove()
         {
-            AttachRoomEdgesSignal.RemoveAllListeners();
+            AttachRoomEdgesSignal.RemoveListener(HandleAttachRoomEdgesSignal);
+            LocalPLayerSpawnSignal.RemoveListener(HandleLocalPlayerSpawnSignal);
         }
 
         private void HandleAttachRoomEdgesSignal(Collider2D collder2D)

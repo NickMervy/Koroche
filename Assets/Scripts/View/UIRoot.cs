@@ -5,9 +5,8 @@ namespace View
 {
     public class UIRoot : ContextView
     {
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
             context = new UIContext(this, true);
             context.Start();
         }

@@ -81,8 +81,8 @@ namespace strange.extensions.injector.impl
 					}
 					else 
 					{
-                        base.Unbind(key, binding.name); //remove this cross context binding from ONLY the local binder
-                        CrossContextBinder.ResolveBinding(binding, key);
+						base.Unbind(key, binding.name); //remove this cross context binding from ONLY the local binder
+						CrossContextBinder.ResolveBinding(binding, key);
 					}
 				}
 				else

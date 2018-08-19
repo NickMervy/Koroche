@@ -5,12 +5,12 @@ using UnityEngine.Networking;
 
 public class Constants
 {
-    public const string MainScene = "Main";
+    public const string LoaderScene = "Loader";
     public const string MenuScene = "Menu";
     public const string GameScene = "Game";
     public const string UIScene = "UI";
     public const string CamerasScene = "Cameras";
-    public const string LoadingScene = "Loading";
 
     public const string PrefabsContainerPath = "PrefabsContainer";
+    public const string GameStateKey = "GameState";
 }

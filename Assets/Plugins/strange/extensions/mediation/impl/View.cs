@@ -86,7 +86,7 @@ namespace strange.extensions.mediation.impl
 		/// attempt to connect again at this moment.
 		protected virtual void Start()
 		{
-            if (autoRegisterWithContext && !registeredWithContext && shouldRegister)
+			if (autoRegisterWithContext && !registeredWithContext && shouldRegister)
 				bubbleToContext(this, BubbleType.Add, true);
 		}
 
@@ -140,7 +140,7 @@ namespace strange.extensions.mediation.impl
 								break;
 							case BubbleType.Remove:
 								context.RemoveView(view);
-						        break;
+								break;
 							case BubbleType.Enable:
 								context.EnableView(view);
 								break;

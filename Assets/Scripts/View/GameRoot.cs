@@ -6,9 +6,8 @@ namespace View
 { 
     public class GameRoot : ContextView
     {
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
             context = new GameContext(this, true);
             context.Start();
         }

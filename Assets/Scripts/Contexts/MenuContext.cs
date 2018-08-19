@@ -13,8 +13,8 @@ namespace Contexts
         protected override void mapBindings()
         {
             commandBinder.Bind<StartSignal>().Once();
-            commandBinder.Bind<StartJourneySignal>()
-                .To<ChangeLevel_Menu_Game_Command>();
+            commandBinder.Bind<NewGameButtonClickSignal>()
+                .To<DispatchNewGameCommand>();
             commandBinder.Bind<AppExitSignal>()
                 .To<AppExitCommand>();
 

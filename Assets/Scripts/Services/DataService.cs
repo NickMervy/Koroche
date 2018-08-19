@@ -8,29 +8,24 @@ namespace Services
 {
     public class DataService
     {
-        private readonly IDataLoader _loader;
+        [Inject(typeof(DataService))] public IDataLoader Loader { get; set; }
 
-        public DataService(IDataLoader loader)
-        {
-            _loader = loader;
-        }
-
-        public IEnumerable<GameObject> Prefabs { get; private set; }
+        public IEnumerable<Character> Characters { get; private set; }
 
         public void LoadPrefabs()
         {
-            _loader.Load<PrefabsContainer>(Constants.PrefabsContainerPath, pc =>
+            Loader.Load<PrefabsContainer>(Constants.PrefabsContainerPath, pc =>
             {
-                Prefabs = pc.Prefabs;
+                Characters = pc.Characters;
                 Debug.Log("Prefabs loaded");
             });
         }
 
         public void LoadPrefabs(Action callback)
         {
-            _loader.Load<PrefabsContainer>(Constants.PrefabsContainerPath, pc =>
+            Loader.Load<PrefabsContainer>(Constants.PrefabsContainerPath, pc =>
             {
-                Prefabs = pc.Prefabs;
+                Characters = pc.Characters;
                 Debug.Log("Prefabs loaded");
                 callback();
             });
