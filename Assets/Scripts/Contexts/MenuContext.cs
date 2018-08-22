@@ -12,7 +12,10 @@ namespace Contexts
 
         protected override void mapBindings()
         {
-            commandBinder.Bind<StartSignal>().Once();
+            injectionBinder.Bind<SetContinueButtonSignal>().ToSingleton();
+            commandBinder.Bind<StartSignal>()
+                .To<SetContinueButtonCommand>()
+                .Once();
             commandBinder.Bind<NewGameButtonClickSignal>()
                 .To<DispatchNewGameCommand>();
             commandBinder.Bind<AppExitSignal>()

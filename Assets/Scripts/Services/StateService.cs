@@ -40,5 +40,10 @@ namespace Services
             GameState = new GameState();
             Debug.Log("New GameState created");
         }
+
+        public bool HasSaves(string key)
+        {
+            return PlayerPrefs.HasKey(key);
+        }
     }
 }

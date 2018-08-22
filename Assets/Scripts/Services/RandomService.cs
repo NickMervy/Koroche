@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UniRx;
+using UnityEngine;
 
 namespace Services
 {
     public class RandomService
     {
+        public float RandomRange(float a, float b)
+        {
+            return Random.Range(a, b);
+        }
+
+        public int RandomRange(int a, int b)
+        {
+            return Random.Range(a, b);
+        }
+
         public T FromCollection<T>(IEnumerable<T> collection)
         {
             var randomIndex = UnityEngine.Random.Range(0, collection.Count());

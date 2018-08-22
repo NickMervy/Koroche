@@ -10,7 +10,7 @@ namespace Services
     {
         [Inject(typeof(DataService))] public IDataLoader Loader { get; set; }
 
-        public IEnumerable<Character> Characters { get; private set; }
+        public IEnumerable<CharacterModel> Characters { get; private set; }
 
         public void LoadPrefabs()
         {

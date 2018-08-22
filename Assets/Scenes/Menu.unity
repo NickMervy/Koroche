@@ -399,7 +399,7 @@ GameObject:
   - component: {fileID: 977659590}
   - component: {fileID: 977659591}
   m_Layer: 0
-  m_Name: ViewRoot
+  m_Name: MenuRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -823,6 +823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44601695aa4d9ba4e8e5811c8cb20a7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _continueButton: {fileID: 1053095877}
 --- !u!224 &1262634242
 RectTransform:
   m_ObjectHideFlags: 0

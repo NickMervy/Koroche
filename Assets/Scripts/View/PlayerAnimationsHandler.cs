@@ -16,22 +16,33 @@ namespace View
         {
             Observable.EveryUpdate().Subscribe(_ =>
             {
-                var xAxis = _playerController.AxisX;
-                var yAxis = _playerController.AxisY;
+                HandleMovement();
+                HandleAttack();
+            }).AddTo(this);
+        }
 
-                if (xAxis == 0 && yAxis == 0)
-                {
-                    _anim.SetBool("IsMove", false);
-                }
+        private void HandleMovement()
+        {
+            var xAxis = _playerController.AxisX;
+            var yAxis = _playerController.AxisY;
 
-                else if (xAxis != 0 || yAxis != 0)
-                {
-                    _anim.SetBool("IsMove", true);
-                }
+            if (xAxis == 0 && yAxis == 0)
+            {
+                _anim.SetBool("IsMove", false);
+            }
 
+            else if (xAxis != 0 || yAxis != 0)
+            {
                 _anim.SetFloat("Vx", xAxis);
                 _anim.SetFloat("Vy", yAxis);
-            }).AddTo(this);
+                _anim.SetBool("IsMove", true);
+            }
+        }
+
+        private void HandleAttack()
+        {
+            var mouseDown = _playerController.MouseDown;
+            _anim.SetBool("IsAttack", mouseDown);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace View
 {
     public class PlayerViewMediator : TargetMediator<PlayerView>
     {
-        [Inject] public StartPlayerSignal PlayerSpawnSignal { get; set; }
+        [Inject] public StartPlayerSignal StartPlayerSignal { get; set; }
 
         public override void OnRegister()
         {
@@ -19,7 +19,7 @@ namespace View
 
         private void OnPlayerSpawn()
         {
-            PlayerSpawnSignal.Dispatch(View);
+            StartPlayerSignal.Dispatch(View);
         }
     }
 }

@@ -16,11 +16,12 @@ namespace Contexts
                 .To<AddUISceneCommand>()
                 .Once();
 
-            commandBinder.Bind<NewSpawnRootSignal>()
-                .To<SetSpawnRootCommand>()
-                .To<SpawnPlayerCommand>();
+            commandBinder.Bind<SpawnersReadySignal>()
+                .To<SpawnLevelObjectsCommand>();
+            commandBinder.Bind<StartPlayerSignal>()
+                .To<InitPlayerCommand>();
 
-            mediationBinder.Bind<SpawnRootView>().To<SpawnRootViewMediator>();
+            mediationBinder.Bind<SpawnersView>().To<SpawnersViewMediator>();
             mediationBinder.Bind<PlayerView>().To<PlayerViewMediator>();
             mediationBinder.Bind<RoomView>().To<RoomViewMediator>();
         }

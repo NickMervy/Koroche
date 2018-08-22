@@ -11,6 +11,7 @@ namespace View
     {
         public float AxisX { get; private set; }
         public float AxisY { get; private set; }
+        public bool MouseDown { get; private set; }
 
         public void Start()
         {
@@ -18,6 +19,7 @@ namespace View
             {
                 AxisX = Input.GetAxisRaw("Horizontal");
                 AxisY = Input.GetAxisRaw("Vertical");
+                MouseDown = Input.GetMouseButtonDown(0);
             }).AddTo(this);
         }
     }

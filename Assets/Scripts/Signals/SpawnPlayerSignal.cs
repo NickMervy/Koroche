@@ -1,6 +1,0 @@
-﻿using strange.extensions.signal.impl;
-
-namespace Signals
-{
-    public class SpawnPlayerSignal : Signal { }
-}

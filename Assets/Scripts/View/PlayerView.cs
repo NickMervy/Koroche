@@ -1,13 +1,19 @@
 using System;
-using strange.extensions.context.impl;
+using Models;
 using strange.extensions.mediation.impl;
-using UnityEngine;
 
 namespace View
 {
     public class PlayerView : EventView
     {
         public event Action PlayerSpawn;
+        private PlayerMovementHandler _playerMovement;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            _playerMovement = GetComponent<PlayerMovementHandler>();
+        }
 
         protected override void Start()
         {
@@ -19,6 +25,11 @@ namespace View
         {
             var handler = PlayerSpawn;
             if (handler != null) handler();
+        }
+
+        public void Init(CharacterModel model)
+        {
+            _playerMovement.Speed = model.MoveSpeed;
         }
     }
 }

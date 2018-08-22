@@ -20,11 +20,10 @@ namespace Contexts
             injectionBinder.Bind<AttachRoomEdgesSignal>().ToSingleton().CrossContext();
             injectionBinder.Bind<ScenesService>().ToSingleton().CrossContext();
             injectionBinder.Bind<StateService>().ToSingleton().CrossContext();
-            injectionBinder.Bind<SpawnService>().ToSingleton().CrossContext();
             injectionBinder.Bind<DataService>().ToSingleton().CrossContext();
-            injectionBinder.Bind<NewSpawnRootSignal>().ToSingleton().CrossContext();
+            injectionBinder.Bind<RandomService>().ToSingleton().CrossContext();
+            injectionBinder.Bind<SpawnersReadySignal>().ToSingleton().CrossContext();
             injectionBinder.Bind<StartPlayerSignal>().ToSingleton().CrossContext();
-            injectionBinder.Bind<SpawnPlayerSignal>().ToSingleton().CrossContext();
             injectionBinder.Bind<NewGameSignal>().ToSingleton().CrossContext();
             injectionBinder.Bind<AsyncNewGameSignal>().ToSingleton().CrossContext();
             injectionBinder.Bind<ContinueGameSignal>().ToSingleton().CrossContext();
@@ -35,8 +34,6 @@ namespace Contexts
             #region CommandBinder
             commandBinder.Bind<StartSignal>()
                 .To<AddCamerasSceneCommand>()
-                .To<AddMenuSceneCommand>()
-                .InSequence()
                 .Once();
 
             commandBinder.Bind<AsyncNewGameSignal>()

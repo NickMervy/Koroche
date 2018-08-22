@@ -1,7 +1,7 @@
 ﻿using System;
-using strange.extensions.context.impl;
-using UnityEngine.EventSystems;
 using strange.extensions.mediation.impl;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace View
 {
@@ -10,6 +10,8 @@ namespace View
         public event Action SingleplayerButtonClick;
         public event Action CooperativeButtonClick;
         public event Action ExitButtonClick;
+
+        [SerializeField] private Button _continueButton;
 
         public virtual void OnExitClick()
         {
@@ -27,6 +29,11 @@ namespace View
         {
             var handler = CooperativeButtonClick;
             if (handler != null) handler();
+        }
+
+        public void SetContinueButton(bool state)
+        {
+            _continueButton.interactable = state;
         }
     }
 }

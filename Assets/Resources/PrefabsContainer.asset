@@ -15,6 +15,18 @@ MonoBehaviour:
   - Name: Player
     Health: 100
     Damage: 10
-    MoveSpeed: 10
+    MoveSpeed: 2
     Id: Player
-    Prefab: {fileID: 1607877504859968, guid: e5e0d25edcedfa04290cae09439a6d8c, type: 2}
+    Prefab: {fileID: 1607877504859968, guid: 17a750320c4ffa048bb7ae0bb68417bf, type: 2}
+  - Name: Skeleton
+    Health: 100
+    Damage: 10
+    MoveSpeed: 10
+    Id: Skeleton
+    Prefab: {fileID: 1835966379839746, guid: 4067cc616dcd8c74199819187c0932c9, type: 2}
+  - Name: SkeletonClothed
+    Health: 100
+    Damage: 10
+    MoveSpeed: 10
+    Id: SkeletonClothed
+    Prefab: {fileID: 1182972389071522, guid: 613957cceca18dd488f11ec6c68ec6b0, type: 2}

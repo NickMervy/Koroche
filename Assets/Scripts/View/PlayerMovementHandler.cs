@@ -10,7 +10,7 @@ namespace View
 {
     public class PlayerMovementHandler : MonoBehaviour
     {
-        [SerializeField] private float _speed;
+        public float Speed;
         [SerializeField] private PlayerAxisController _playerController;
         [SerializeField] private Rigidbody2D _rigidBody2d;
 
@@ -22,7 +22,7 @@ namespace View
                 var yAxis = _playerController.AxisY;
 
                 var vector = new Vector2(xAxis, yAxis);
-                _rigidBody2d.velocity = _speed * vector.normalized;
+                _rigidBody2d.velocity = Speed * vector.normalized;
             }).AddTo(this);
         }
     }

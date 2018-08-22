@@ -8,16 +8,15 @@ namespace View
     {
         public event Action StartEvent;
 
-        public Grid Grid;
         public Collider2D Edges;
 
         protected override void Start()
         {
             base.Start();
-            OnOnStart();
+            OnStart();
         }
 
-        protected virtual void OnOnStart()
+        protected virtual void OnStart()
         {
             var handler = StartEvent;
             if (handler != null) handler();
