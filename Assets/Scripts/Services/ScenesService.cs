@@ -10,14 +10,18 @@ namespace Services
 {
     public class ScenesService
     {
+        [Inject] public ILogger Logger { get; set; }
+
         public AsyncOperation LoadAsync(string name, LoadSceneMode loadMode = LoadSceneMode.Additive)
         {
-            Debug.LogFormat(@"Loading started: ""{0}"" ", name);
+            Logger.Log(string.Format(
+                @"Loading started: ""{0}"" ", name));
 
             var operation = SceneManager.LoadSceneAsync(name, loadMode);
             operation.OnComplete(() =>
             {
-                Debug.LogFormat(@"Loading finished: ""{0}"" ", name);
+                Logger.Log(string.Format(
+                    @"Loading finished: ""{0}"" ", name));
             });
 
             return operation;
@@ -25,12 +29,14 @@ namespace Services
 
         public AsyncOperation LoadAsync(string name, Action callback, LoadSceneMode loadMode = LoadSceneMode.Additive)
         {
-            Debug.LogFormat(@"Loading started: ""{0}"" ", name);
+            Logger.Log(string.Format(
+                @"Loading started: ""{0}"" ", name));
 
             var operation = SceneManager.LoadSceneAsync(name, loadMode);
             operation.OnComplete(() =>
             {
-                Debug.LogFormat(@"Loading finished: ""{0}"" ", name);
+                Logger.Log(string.Format(
+                    @"Loading finished: ""{0}"" ", name));
                 callback();
             });
 
@@ -39,12 +45,14 @@ namespace Services
 
         public AsyncOperation UnloadAsync(string name)
         {
-            Debug.LogFormat(@"Unloading started: ""{0}"" ", name);
+            Logger.Log(string.Format(
+                @"Unloading started: ""{0}"" ", name));
 
             var operation = SceneManager.UnloadSceneAsync(name);
             operation.OnComplete(() =>
             {
-                Debug.LogFormat(@"Unloading finished: ""{0}"" ", name);
+                Logger.Log(string.Format(
+                    @"Unloading finished: ""{0}"" ", name));
             });
 
             return operation;
@@ -52,12 +60,14 @@ namespace Services
 
         public AsyncOperation UnloadAsync(string name, Action callback)
         {
-            Debug.LogFormat(@"Unloading started: ""{0}"" ", name);
+            Logger.Log(string.Format(
+                @"Unloading started: ""{0}"" ", name));
 
             var operation = SceneManager.UnloadSceneAsync(name);
             operation.OnComplete(() =>
             {
-                Debug.LogFormat(@"Unloading finished: ""{0}"" ", name);
+                Logger.Log(string.Format(
+                    @"Unloading finished: ""{0}"" ", name));
                 callback();
             });
 
@@ -67,19 +77,6 @@ namespace Services
         public bool IsAdded(string name)
         {
             return SceneManager.GetSceneByName(name).name == name;
-        }
-
-        public void SetActiveScene(string name)
-        {
-            var scene = SceneManager.GetSceneByName(name);
-            if (SceneManager.SetActiveScene(scene))
-            {
-                Debug.LogFormat(@"Active scene: ""{0}"" ", name);
-            }
-            else
-            {
-                Debug.LogWarningFormat(@"The scene is not loaded: ""{0}"" ", name);
-            }
         }
     }
 }

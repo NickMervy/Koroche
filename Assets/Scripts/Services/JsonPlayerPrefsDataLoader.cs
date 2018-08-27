@@ -6,6 +6,8 @@ namespace Services
 {
     public class JsonPlayerPrefsDataLoader : IDataLoader
     {
+        [Inject] public ILogger Logger { get; set; }
+
         public void Load<T>(string key, Action<T> callback)
         {
             try
@@ -22,7 +24,7 @@ namespace Services
             {
                 e = new FileNotFoundException(
                     string.Format("Couldn't find JsonFile marked by key: '{0}'", key));
-                Debug.LogErrorFormat(e.Message);
+                Logger.LogError(e.Message);
                 callback(default(T));
             }
         }

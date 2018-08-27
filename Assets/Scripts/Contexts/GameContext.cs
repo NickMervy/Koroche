@@ -1,7 +1,7 @@
-﻿using Controllers;
-using UnityEngine;
+using Controllers;
+using Models;
 using Signals;
-using View;
+using UnityEngine;
 
 namespace Contexts
 {
@@ -12,18 +12,35 @@ namespace Contexts
 
         protected override void mapBindings()
         {
-            commandBinder.Bind<StartSignal>()
-                .To<AddUISceneCommand>()
-                .Once();
+            base.mapBindings();
 
-            commandBinder.Bind<SpawnersReadySignal>()
-                .To<SpawnLevelObjectsCommand>();
-            commandBinder.Bind<StartPlayerSignal>()
-                .To<InitPlayerCommand>();
+            #region CommandBinder
 
-            mediationBinder.Bind<SpawnersView>().To<SpawnersViewMediator>();
-            mediationBinder.Bind<PlayerView>().To<PlayerViewMediator>();
-            mediationBinder.Bind<RoomView>().To<RoomViewMediator>();
+            //todo: use StatePattern
+            var data = injectionBinder.GetInstance<GameStartData>();
+            if (data.State == GameStartState.New)
+            {
+                commandBinder.Bind<SpawnersReadySignal>()
+                    .To<SpawnAllCommand>()
+                    .InSequence();
+                commandBinder.Bind<StartPlayerSignal>()
+                    .To<NewPlayerStateCommand>()
+                    .To<AssignPlayerStateCommand>()
+                    .Once();
+            }
+            else if (data.State == GameStartState.Continue)
+            {
+                commandBinder.Bind<SpawnersReadySignal>()
+                    .To<FillLazySpawnListCommand>()
+                    .To<SpawnLazyCommand>()
+                    .InSequence()
+                    .Once();
+                commandBinder.Bind<StartPlayerSignal>()
+                    .To<LoadPlayerStateCommand>()
+                    .To<AssignPlayerStateCommand>()
+                    .Once();
+            }
+            #endregion
         }
     }
 }

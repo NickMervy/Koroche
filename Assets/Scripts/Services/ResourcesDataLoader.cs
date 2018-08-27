@@ -7,6 +7,8 @@ namespace Services
 {
     public class ResourcesDataLoader : IDataLoader
     {
+        [Inject] public ILogger Logger { get; set; }
+
         public void Load<T>(string path, Action<T> callback)
         {
             try
@@ -29,7 +31,7 @@ namespace Services
                 e = new FileNotFoundException(
                     string.Format("Couldn't find asset by path: {0}/{1}",
                     Application.dataPath, path));
-                Debug.LogErrorFormat(e.Message);
+                Logger.LogError(e.Message);
                 throw;
             }
         }

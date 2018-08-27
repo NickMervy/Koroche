@@ -7,27 +7,27 @@ namespace View
 {
     public class MenuView : EventView
     {
-        public event Action SingleplayerButtonClick;
-        public event Action CooperativeButtonClick;
+        public event Action StartJourneyButtonClick;
+        public event Action ContinueButtonClick;
         public event Action ExitButtonClick;
 
         [SerializeField] private Button _continueButton;
 
+        public virtual void OnStartJourneyButtonClick()
+        {
+            var handler = StartJourneyButtonClick;
+            if (handler != null) handler();
+        }
+
+        public virtual void OnContinueButtonClick()
+        {
+            var handler = ContinueButtonClick;
+            if (handler != null) handler();
+        }
+
         public virtual void OnExitClick()
         {
             var handler = ExitButtonClick;
-            if (handler != null) handler();
-        }
-
-        public virtual void OnSingleplayerClick()
-        {
-            var handler = SingleplayerButtonClick;
-            if (handler != null) handler();
-        }
-
-        protected virtual void OnCooperativeButtonClick()
-        {
-            var handler = CooperativeButtonClick;
             if (handler != null) handler();
         }
 

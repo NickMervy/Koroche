@@ -11,10 +11,10 @@ namespace Tests
     {
 
         [Test]
-        public void JsonFileDataSaver_Save_MethodShouldHandleWrongPath()
+        public void ExistedJsonFileDataSaver_Save_MethodShouldHandleWrongPath()
         {
             var path = Application.dataPath + "/JSON_WrongPath.txt";
-            var saver = new JsonFileDataSaver();
+            var saver = new ExistedJsonFileDataSaver {Logger = new UnityLogger()};;
             var obj = new Object();
 
             LogAssert.ignoreFailingMessages = true;

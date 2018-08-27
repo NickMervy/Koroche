@@ -15,7 +15,7 @@ namespace Tests
         public void ResourcesDataLoader_Load_MethodShouldHandleWrongPath()
         {
             var path = "RES_WrongPath";
-            var loader = new ResourcesDataLoader();
+            var loader = new ResourcesDataLoader {Logger = new UnityLogger()};
             LogAssert.ignoreFailingMessages = true;
 
             Assert.Throws<FileNotFoundException>(
@@ -27,7 +27,7 @@ namespace Tests
         {
             var pathProject = "Assets/Resources/TestAsset.asset";
             var pathR = "TestAsset";
-            var loader = new ResourcesDataLoader();
+            var loader = new ResourcesDataLoader { Logger = new UnityLogger() };
             LogAssert.ignoreFailingMessages = true;
 
             var asset = ScriptableObject.CreateInstance<TestAsset>();
@@ -42,7 +42,7 @@ namespace Tests
         public void JsonFileDataLoader_Load_MethodShouldHandleWrongPath()
         {
             var path = Application.dataPath + "/JSON_WrongPath.txt";
-            var loader = new JsonFileDataLoader();
+            var loader = new JsonFileDataLoader { Logger = new UnityLogger() };
             LogAssert.ignoreFailingMessages = true;
 
             Assert.Throws<FileNotFoundException>(

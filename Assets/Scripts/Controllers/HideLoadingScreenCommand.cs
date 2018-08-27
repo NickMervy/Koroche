@@ -6,8 +6,7 @@ namespace Controllers
 {
     public class HideLoadingScreenCommand : Command
     {
-        [Inject]
-        public HideLoadingScreenSignal HideLoadingScreenSignal { get; set; }
+        [Inject] public HideLoadingScreenSignal HideLoadingScreenSignal { get; set; }
 
         public override void Execute()
         {

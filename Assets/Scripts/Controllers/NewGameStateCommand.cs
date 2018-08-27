@@ -1,16 +1,18 @@
+using Models;
 using strange.extensions.command.impl;
 using Services;
-using UniRx;
 
 namespace Controllers
 {
     public class NewGameStateCommand : Command
     {
-        [Inject] public StateService StateService { get; set; }
+        [Inject] public IStatesService StatesService { get; set; }
 
         public override void Execute()
         {
-            StateService.NewGameState();
+            var gameState = new GameState();
+            StatesService.CurrentGameState = gameState;
+            StatesService.UserState.Saves.Add(gameState);
         }
     }
 }

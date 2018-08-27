@@ -6,17 +6,11 @@ namespace View
 {
     public class VirtualCamera2DView : EventView
     {
-        public CinemachineConfiner Confiner;
-        public CinemachineVirtualCamera VirtCamera;
-
-        public void SetBounders(Collider2D collder2D)
-        {
-            Confiner.m_BoundingShape2D = collder2D;
-        }
+        [SerializeField] private CinemachineVirtualCamera _virtCamera;
 
         public void SetFollowTarget(GameObject obj)
         {
-            VirtCamera.Follow = obj.transform;
+            _virtCamera.Follow = obj.transform;
         }
     }
 }

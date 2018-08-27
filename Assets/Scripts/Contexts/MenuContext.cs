@@ -12,17 +12,22 @@ namespace Contexts
 
         protected override void mapBindings()
         {
-            injectionBinder.Bind<SetContinueButtonSignal>().ToSingleton();
+            base.mapBindings();
+
+            #region CommandBinder
             commandBinder.Bind<StartSignal>()
-                .To<SetContinueButtonCommand>()
                 .Once();
             commandBinder.Bind<NewGameButtonClickSignal>()
-                .To<DispatchNewGameCommand>();
+                .To<DispatchNewGameSignalCommand>();
+            commandBinder.Bind<ContinueButtonClickSignal>()
+                .To<DispatchContinueSignalCommand>();
             commandBinder.Bind<AppExitSignal>()
                 .To<AppExitCommand>();
+            #endregion
 
-            mediationBinder.Bind<MenuView>()
-                .To<MenuViewMediator>();
+            #region MediationBinder
+            mediationBinder.Bind<MenuView>().To<MenuMediator>();
+            #endregion
         }
     }
 }

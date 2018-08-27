@@ -6,7 +6,7 @@ namespace View
 {
     public class PlayerView : EventView
     {
-        public event Action PlayerSpawn;
+        public event Action PlayerStart;
         private PlayerMovementHandler _playerMovement;
 
         protected override void Awake()
@@ -18,18 +18,19 @@ namespace View
         protected override void Start()
         {
             base.Start();
-            OnPlayerSpawn();
+            OnPlayerStart();
         }
 
-        protected virtual void OnPlayerSpawn()
+        protected virtual void OnPlayerStart()
         {
-            var handler = PlayerSpawn;
+            var handler = PlayerStart;
             if (handler != null) handler();
         }
 
-        public void Init(CharacterModel model)
+        public void SetState(CharacterState state)
         {
-            _playerMovement.Speed = model.MoveSpeed;
+            _playerMovement.Speed = state.Model.MoveSpeed;
+            gameObject.transform.position = state.Position;
         }
     }
 }

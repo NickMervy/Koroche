@@ -9,6 +9,8 @@ namespace Services
     public class DataService
     {
         [Inject(typeof(DataService))] public IDataLoader Loader { get; set; }
+        [Inject] public Constants Constants { get; set; }
+        [Inject] public ILogger Logger { get; set; }
 
         public IEnumerable<CharacterModel> Characters { get; private set; }
 
@@ -17,7 +19,7 @@ namespace Services
             Loader.Load<PrefabsContainer>(Constants.PrefabsContainerPath, pc =>
             {
                 Characters = pc.Characters;
-                Debug.Log("Prefabs loaded");
+                Logger.Log("Prefabs loaded");
             });
         }
 
@@ -26,7 +28,7 @@ namespace Services
             Loader.Load<PrefabsContainer>(Constants.PrefabsContainerPath, pc =>
             {
                 Characters = pc.Characters;
-                Debug.Log("Prefabs loaded");
+                Logger.Log("Prefabs loaded");
                 callback();
             });
         }

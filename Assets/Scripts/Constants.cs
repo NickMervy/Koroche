@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class Constants
+public sealed class Constants
 {
-    public const string LoaderScene = "Loader";
-    public const string MenuScene = "Menu";
-    public const string GameScene = "Game";
-    public const string UIScene = "UI";
-    public const string CamerasScene = "Cameras";
+    public readonly string LoaderScene = "Loader";
+    public readonly string MenuScene = "Menu";
+    public readonly string DesertUona = "DesertUona";
+    public readonly string UIScene = "UI";
+    public readonly string CamerasScene = "Cameras";
 
-    public const string PrefabsContainerPath = "PrefabsContainer";
-    public const string GameStateKey = "GameState";
+    public readonly string PrefabsContainerPath = "PrefabsContainer";
+    public readonly string SavesKey = "GameStates";
+    public readonly string SavesPath = Application.persistentDataPath + "/Saves.che";
+}
+
+public enum GameStartState
+{
+    New,
+    Continue
 }

@@ -3,4 +3,5 @@
 namespace Signals
 {
     public class NewGameButtonClickSignal : Signal { }
+    public class ContinueButtonClickSignal : Signal { }
 }

@@ -3,6 +3,7 @@ using strange.extensions.command.impl;
 using Services;
 using UniRx;
 using UnityEngine;
+using ILogger = Services.ILogger;
 
 namespace Controllers
 {
@@ -10,17 +11,19 @@ namespace Controllers
     {
         [Inject] public DataService DataService { get; set; }
         [Inject] public ChangeLevelData ChangeLevelData { get; set; }
+        [Inject] public int ProcessesCounter { get; set; }
+        [Inject] public ILogger Logger { get; set; }
 
         public override void Execute()
         {
-            ChangeLevelData.ParallelProcesses++;
+            ProcessesCounter++;
             DataService.LoadPrefabs(OnComplete);
         }
 
         private void OnComplete()
         {
-            Debug.Log("LoadDataCommand released");
-            ChangeLevelData.ParallelProcesses--;
+            Logger.Log("LoadDataCommand released");
+            ProcessesCounter--;
         }
     }
 }

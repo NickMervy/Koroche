@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using strange.extensions.mediation.impl;
 using UnityEngine;
 
@@ -7,31 +8,56 @@ namespace View
 {
     public class SpawnersView : EventView
     {
-        public event Action StartEvent;
+        public event Action SpawnersStart;
+
         private ISpawner[] _spawners;
+
+        public IEnumerable<ISpawner> Spawners
+        {
+            get
+            {
+                _spawners = _spawners ?? GetComponentsInChildren<ISpawner>();
+                return _spawners;
+            }   
+        }
+
+        public ISpawner LazySpawner
+        {
+            get
+            {
+                return Spawners.First(s => s is LazySpawner);
+            }
+        }
 
         protected override void Awake()
         {
-            _spawners = GetComponentsInChildren<ISpawner>();
+            base.Awake();
+            _spawners = _spawners ?? GetComponentsInChildren<ISpawner>();
         }
 
         protected override void Start()
         {
-            OnStartEvent();
-        }
-
-        protected virtual void OnStartEvent()
-        {
-            var handler = StartEvent;
-            if (handler != null) handler();
+            base.Start();
+            OnSpawnersStart();
         }
 
         public void SpawnAll()
         {
-            foreach (var s in _spawners)
+            foreach (var s in Spawners)
             {
                 s.Spawn();
             }
+        }
+
+        public void SpawnLazy()
+        {
+            LazySpawner.Spawn();
+        }
+
+        protected virtual void OnSpawnersStart()
+        {
+            var handler = SpawnersStart;
+            if (handler != null) handler();
         }
     }
 }

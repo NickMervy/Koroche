@@ -10,6 +10,6 @@ namespace Models
         public string CallerScene;
         public string TargetScene;
         public AsyncOperation Operation;
-        public int ParallelProcesses;
+        public GameStartState GameStartState;
     }
 }

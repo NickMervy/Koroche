@@ -2,6 +2,7 @@
 using strange.extensions.signal.impl;
 
 namespace Signals
+
 {
-    public class AsyncNewGameSignal : Signal<ChangeLevelData> { }
+    public class AsyncNewGameSignal : Signal<ChangeLevelData, int> { }
 }

@@ -1,8 +1,3 @@
-using Controllers;
-using strange.extensions.command.api;
-using strange.extensions.command.impl;
-using strange.extensions.context.api;
-using strange.extensions.context.impl;
 using Signals;
 using UnityEngine;
 using View;
@@ -16,9 +11,16 @@ namespace Contexts
 
         protected override void mapBindings()
         {
+            base.mapBindings();
+
+            #region CommandBinder
             commandBinder.Bind<StartSignal>().Once();
+            #endregion
+
+            #region MediationBinder
             mediationBinder.Bind<VirtualCamera2DView>()
                 .To<VirtualCamera2DViewMediator>();
+            #endregion
         }
     }
 }

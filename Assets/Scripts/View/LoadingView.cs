@@ -1,4 +1,5 @@
 using strange.extensions.mediation.impl;
+using Signals;
 using UnityEngine;
 
 namespace View

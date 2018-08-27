@@ -320,7 +320,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1202708192}
   - component: {fileID: 1202708191}
-  - component: {fileID: 1202708190}
   - component: {fileID: 1202708193}
   m_Layer: 0
   m_Name: CM_vcam_1
@@ -329,22 +328,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1202708190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1202708189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ConfineMode: 0
-  m_BoundingVolume: {fileID: 0}
-  m_BoundingShape2D: {fileID: 0}
-  m_ConfineScreenEdges: 1
-  m_Damping: 0
 --- !u!114 &1202708191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,8 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046117f901e130e449a43842f7270006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Confiner: {fileID: 1202708190}
-  VirtCamera: {fileID: 1202708191}
+  _virtCamera: {fileID: 1202708191}
 --- !u!1 &1835774837
 GameObject:
   m_ObjectHideFlags: 0

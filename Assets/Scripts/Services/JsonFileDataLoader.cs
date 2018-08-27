@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Security.Cryptography;
 using UnityEngine;
 
 namespace Services
 {
     public class JsonFileDataLoader : IDataLoader
     {
+        [Inject] public ILogger Logger { get; set; }
+
         public void Load<T>(string path, Action<T> callback)
         {
             try
@@ -27,8 +26,7 @@ namespace Services
             {
                 e = new FileNotFoundException(
                     string.Format("Couldn't find file by path: {0}", path));
-                Debug.LogErrorFormat(e.Message);
-                throw;
+                Logger.LogWarning(e.Message);
             }
         }
     }

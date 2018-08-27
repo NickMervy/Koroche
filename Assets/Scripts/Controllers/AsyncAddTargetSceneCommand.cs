@@ -4,6 +4,7 @@ using strange.extensions.command.impl;
 using Services;
 using UniRx;
 using UnityEngine;
+using ILogger = Services.ILogger;
 
 namespace Controllers
 {
@@ -11,17 +12,20 @@ namespace Controllers
     {
         [Inject] public ScenesService ScenesService { get; set; }
         [Inject] public ChangeLevelData ChangeLevelData { get; set; }
+        [Inject] public int ProcessesCounter { get; set; }
+        [Inject] public ILogger Logger { get; set; }
 
         public override void Execute()
         {
             var sceneName = ChangeLevelData.TargetScene;
             if (ScenesService.IsAdded(sceneName))
             {
-                Debug.LogWarningFormat(@"""{0}"" scene is already loaded", sceneName);
+                Logger.LogWarning(string.Format(
+                    @"""{0}"" scene is already loaded", sceneName));
                 return;
             }
 
-            ChangeLevelData.ParallelProcesses++;
+            ProcessesCounter++;
             var operation = ScenesService.LoadAsync(sceneName);
             ChangeLevelData.Operation = operation;
             Observable.FromMicroCoroutine(_ => LoadingCoroutine(operation)).Subscribe();
@@ -39,8 +43,8 @@ namespace Controllers
 
         private void OnComplete()
         {
-            Debug.Log("LoadDataCommand released");
-            ChangeLevelData.ParallelProcesses--;
+            Logger.Log("LoadDataCommand released");
+            ProcessesCounter--;
         }
     }
 }

@@ -8,8 +8,8 @@ namespace Controllers
 {
     public class WaitForActivesCommand : Command
     {
-        [Inject]
-        public ChangeLevelData ChangeLevelData { get; set; }
+        [Inject] public ChangeLevelData ChangeLevelData { get; set; }
+        [Inject] public int ProcessesCounter { get; set; }
 
         public override void Execute()
         {
@@ -19,7 +19,7 @@ namespace Controllers
 
         private IEnumerator WaitCoroutine()
         {
-            while (ChangeLevelData.ParallelProcesses != 0)
+            while (ProcessesCounter != 0)
             {
                 yield return null;
             }
