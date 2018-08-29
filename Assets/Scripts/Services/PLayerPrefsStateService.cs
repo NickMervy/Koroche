@@ -7,8 +7,8 @@ namespace Services
 {
     public class PLayerPrefsStatesService : IStatesService
     {
-        [Inject(typeof(PLayerPrefsStatesService))] public IDataSaver Saver { get; set; }
-        [Inject(typeof(PLayerPrefsStatesService))] public IDataLoader Loader { get; set; }
+        [Inject(typeof(PLayerPrefsStatesService))] public ISaver Saver { get; set; }
+        [Inject(typeof(PLayerPrefsStatesService))] public ILoader Loader { get; set; }
         [Inject] public Constants Constants { get; set; }
         [Inject] public ILogger Logger { get; set; }
 
@@ -21,7 +21,7 @@ namespace Services
 
         public GameState CurrentGameState { get; set; }
 
-        public CharacterState PlayerState { get; set; }
+        public ICharacterState PlayerState { get; set; }
 
         public bool HasSaves
         {

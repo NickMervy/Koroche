@@ -18,10 +18,13 @@ namespace Contexts
             base.mapBindings();
 
             #region InjectionBinder
+            injectionBinder.Bind<GuidService>().ToSingleton().CrossContext();
             injectionBinder.Bind<ILogger>().To<UnityLogger>().ToSingleton().CrossContext();
-            injectionBinder.Bind<IDataLoader>().To<AsyncsResourcesDataLoader>().ToName<DataService>().CrossContext();
-            injectionBinder.Bind<IDataLoader>().To<JsonFileDataLoader>().ToName<FileStatesService>().CrossContext();
-            injectionBinder.Bind<IDataSaver>().To<JsonFileDataSaver>().ToName<FileStatesService>().CrossContext();
+            injectionBinder.Bind<ILoader>().To<AsyncsResourcesLoader>().ToName<DataService>().CrossContext();
+            injectionBinder.Bind<ISurrogatePacket>().To<UnitySurrogatePacket>().ToName<BinaryFormatterFileLoader>().CrossContext();
+            injectionBinder.Bind<ISurrogatePacket>().To<UnitySurrogatePacket>().ToName<BinaryFormatterFileSaver>().CrossContext();
+            injectionBinder.Bind<ILoader>().To<BinaryFormatterFileLoader>().ToName<FileStatesService>().CrossContext();
+            injectionBinder.Bind<ISaver>().To<BinaryFormatterFileSaver>().ToName<FileStatesService>().CrossContext();
             injectionBinder.Bind<IStatesService>().To<FileStatesService>().ToSingleton().CrossContext();
             injectionBinder.Bind<GameStartData>().ToSingleton().CrossContext();
             injectionBinder.Bind<ScenesService>().ToSingleton().CrossContext();

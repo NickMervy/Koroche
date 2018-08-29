@@ -6,12 +6,12 @@ namespace Services
 {
     public interface IStatesService
     {
-        IDataSaver Saver { get; set; }
-        IDataLoader Loader { get; set; }
+        ISaver Saver { get; set; }
+        ILoader Loader { get; set; }
 
         UserState UserState { get; }
         GameState CurrentGameState { get; set; }
-        CharacterState PlayerState { get; set; }
+        ICharacterState PlayerState { get; set; }
         bool HasSaves { get; }
 
         void Load();

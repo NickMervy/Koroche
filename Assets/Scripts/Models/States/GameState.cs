@@ -7,6 +7,6 @@ namespace Models
     public class GameState
     {
         public string Name;
-        public List<CharacterState> CharacterStates = new List<CharacterState>();
+        public Dictionary<string, ICharacterState> CharacterStates = new Dictionary<string, ICharacterState>();
     }
 }

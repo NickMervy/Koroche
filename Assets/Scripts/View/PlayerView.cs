@@ -7,6 +7,7 @@ namespace View
     public class PlayerView : EventView
     {
         public event Action PlayerStart;
+        public string Guid { get; set; }
         private PlayerMovementHandler _playerMovement;
 
         protected override void Awake()
@@ -27,9 +28,9 @@ namespace View
             if (handler != null) handler();
         }
 
-        public void SetState(CharacterState state)
+        public void SetState(ICharacterState state)
         {
-            _playerMovement.Speed = state.Model.MoveSpeed;
+            _playerMovement.Speed = state.MoveSpeed;
             gameObject.transform.position = state.Position;
         }
     }

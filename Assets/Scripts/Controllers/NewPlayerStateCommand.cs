@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Models;
 using strange.extensions.command.impl;
@@ -8,6 +9,7 @@ namespace Controllers
 {
     public class NewPlayerStateCommand : Command
     {
+        [Inject] public GuidService GuidService { get; set; }
         [Inject] public DataService DataService { get; set; }
         [Inject] public IStatesService StatesService { get; set; }
         [Inject] public PlayerView PlayerView { get; set; }
@@ -15,15 +17,19 @@ namespace Controllers
         public override void Execute()
         {
             var model = DataService.Characters.First(p => p.Id == "Player");
-            var state = new CharacterState
+            var guid = GuidService.GenerateGuid().ToString();
+
+            var state = new PlayerState
             {
                 Health = model.Health,
-                Model = model,
+                ModelId = model.Id,
+                MoveSpeed = model.MoveSpeed,
                 Position = PlayerView.transform.position
             };
 
-            StatesService.CurrentGameState.CharacterStates.Add(state);
+            PlayerView.Guid = guid;
             StatesService.PlayerState = state;
+            StatesService.CurrentGameState.CharacterStates.Add(guid, state);
         }
     }
 }

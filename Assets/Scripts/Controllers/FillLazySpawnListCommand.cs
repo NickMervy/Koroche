@@ -20,7 +20,7 @@ namespace Controllers
             var characterModels = DataService.Characters;
             foreach (var cs in characterStates)
             {
-                var prefab = characterModels.First(cm => cs.Model.Id == cm.Id).Prefab;
+                var prefab = characterModels.First(cm => cs.Value.ModelId == cm.Id).Prefab;
                 SpawnersView.LazySpawner.Prefabs.Add(prefab);
             }
         }

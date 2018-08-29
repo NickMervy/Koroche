@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Models;
-using UnityEngine;
-using UnityEngine.Networking;
 
 namespace Services
 {
     public class DataService
     {
-        [Inject(typeof(DataService))] public IDataLoader Loader { get; set; }
+        [Inject(typeof(DataService))] public ILoader Loader { get; set; }
         [Inject] public Constants Constants { get; set; }
         [Inject] public ILogger Logger { get; set; }
 

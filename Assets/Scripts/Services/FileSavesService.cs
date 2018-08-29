@@ -8,8 +8,8 @@ namespace Services
 {
     public class FileStatesService : IStatesService
     {
-        [Inject(typeof(FileStatesService))] public IDataSaver Saver { get; set; }
-        [Inject(typeof(FileStatesService))] public IDataLoader Loader { get; set; }
+        [Inject(typeof(FileStatesService))] public ISaver Saver { get; set; }
+        [Inject(typeof(FileStatesService))] public ILoader Loader { get; set; }
         [Inject] public Constants Constants { get; set; }
         [Inject] public ILogger Logger { get; set; }
 
@@ -22,7 +22,7 @@ namespace Services
 
         public GameState CurrentGameState { get; set; }
 
-        public CharacterState PlayerState { get; set; }
+        public ICharacterState PlayerState { get; set; }
 
 
         public bool HasSaves

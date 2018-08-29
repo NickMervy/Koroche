@@ -1,13 +1,32 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Models
 {
-    [Serializable]
-    public class CharacterState
+    public interface ICharacterState
     {
-        public int Health;
-        public Vector3 Position;
-        public CharacterModel Model;
+        int Health { get; set; }
+        int MoveSpeed { get; set; }
+        Vector3 Position { get; set; }
+        string ModelId { get; set; }
+    }
+
+    [Serializable]
+    public class PlayerState : ICharacterState
+    {
+        public int Health { get; set; }
+        public int MoveSpeed { get; set; }
+        public Vector3 Position { get; set; }
+        public string ModelId { get; set; }
+    }
+
+    [Serializable]
+    public class SkeletonState : ICharacterState
+    {
+        public int Health { get; set; }
+        public int MoveSpeed { get; set; }
+        public Vector3 Position { get; set; }
+        public string ModelId { get; set; }
     }
 }
