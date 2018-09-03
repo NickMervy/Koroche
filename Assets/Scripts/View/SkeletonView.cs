@@ -1,17 +1,27 @@
 using System;
-using strange.extensions.mediation.impl;
-using UnityEngine;
+using Models;
 
 namespace View
 {
-    class SkeletonView : EventView
+    public class SkeletonView : CharacterView
     {
-        public event Action<Collider2D> TriggerEnter2D;
+        public event Action SkeletonStart;
 
-        private void OnTriggerEnter2D(Collider2D col2D)
+        protected override void Start()
         {
-            var handler = TriggerEnter2D;
-            if (handler != null) handler(col2D);
+            base.Start();
+            OnSkeletonStart();
+        }
+
+        protected virtual void OnSkeletonStart()
+        {
+            var handler = SkeletonStart;
+            if (handler != null) handler();
+        }
+
+        public void SetState(ICharacterState state)
+        {
+            gameObject.transform.position = state.Position;
         }
     }
 }

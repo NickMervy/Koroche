@@ -6,7 +6,7 @@ namespace Controllers
 {
     public class NewGameStateCommand : Command
     {
-        [Inject] public IStatesService StatesService { get; set; }
+        [Inject] public StatesService StatesService { get; set; }
 
         public override void Execute()
         {

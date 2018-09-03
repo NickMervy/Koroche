@@ -19,14 +19,14 @@ namespace Contexts
 
             #region InjectionBinder
             injectionBinder.Bind<GuidService>().ToSingleton().CrossContext();
+            injectionBinder.Bind<SpawnService>().ToSingleton().CrossContext();
             injectionBinder.Bind<ILogger>().To<UnityLogger>().ToSingleton().CrossContext();
             injectionBinder.Bind<ILoader>().To<AsyncsResourcesLoader>().ToName<DataService>().CrossContext();
             injectionBinder.Bind<ISurrogatePacket>().To<UnitySurrogatePacket>().ToName<BinaryFormatterFileLoader>().CrossContext();
             injectionBinder.Bind<ISurrogatePacket>().To<UnitySurrogatePacket>().ToName<BinaryFormatterFileSaver>().CrossContext();
-            injectionBinder.Bind<ILoader>().To<BinaryFormatterFileLoader>().ToName<FileStatesService>().CrossContext();
-            injectionBinder.Bind<ISaver>().To<BinaryFormatterFileSaver>().ToName<FileStatesService>().CrossContext();
-            injectionBinder.Bind<IStatesService>().To<FileStatesService>().ToSingleton().CrossContext();
-            injectionBinder.Bind<GameStartData>().ToSingleton().CrossContext();
+            injectionBinder.Bind<ILoader>().To<BinaryFormatterFileLoader>().ToName<StatesService>().CrossContext();
+            injectionBinder.Bind<ISaver>().To<BinaryFormatterFileSaver>().ToName<StatesService>().CrossContext();
+            injectionBinder.Bind<StatesService>().ToSingleton().CrossContext();
             injectionBinder.Bind<ScenesService>().ToSingleton().CrossContext();
             injectionBinder.Bind<DataService>().ToSingleton().CrossContext();
             injectionBinder.Bind<RandomService>().ToSingleton().CrossContext();
@@ -54,17 +54,18 @@ namespace Contexts
                 .To<AddTargetSceneCommand>()
                 .To<WaitForAnyInputCommand>()
                 .To<HideLoadingScreenCommand>()
-                .To<SetStartGameStateCommand>()
+                .To<SetLevelBehaviourCommand>()
                 .InSequence();
 
             commandBinder.Bind<ContinueGameSignal>()
                 .To<ShowLoadingScreenCommand>()
                 .To<RemoveCallerSceneCommand>()
                 .To<LoadGameCommand>()
+                .To<SetNotAssignedStatesListCommand>()
                 .To<AddTargetSceneCommand>()
                 .To<WaitForAnyInputCommand>()
                 .To<HideLoadingScreenCommand>()
-                .To<SetStartGameStateCommand>()
+                .To<SetLevelBehaviourCommand>()
                 .InSequence();
             #endregion
 

@@ -6,7 +6,6 @@ namespace Models
     [Serializable]
     public class GameState
     {
-        public string Name;
-        public Dictionary<string, ICharacterState> CharacterStates = new Dictionary<string, ICharacterState>();
+        public readonly List<ICharacterState> CharacterStates = new List<ICharacterState>();
     }
 }

@@ -19,7 +19,7 @@ namespace Contexts
 
             #region MediationBinder
             mediationBinder.Bind<VirtualCamera2DView>()
-                .To<VirtualCamera2DViewMediator>();
+                .To<VirtualCamera2DMediator>();
             #endregion
         }
     }

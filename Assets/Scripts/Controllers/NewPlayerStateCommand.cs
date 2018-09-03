@@ -9,27 +9,25 @@ namespace Controllers
 {
     public class NewPlayerStateCommand : Command
     {
-        [Inject] public GuidService GuidService { get; set; }
         [Inject] public DataService DataService { get; set; }
-        [Inject] public IStatesService StatesService { get; set; }
+        [Inject] public StatesService StatesService { get; set; }
         [Inject] public PlayerView PlayerView { get; set; }
 
         public override void Execute()
         {
             var model = DataService.Characters.First(p => p.Id == "Player");
-            var guid = GuidService.GenerateGuid().ToString();
+            var id = PlayerView.Id;
 
             var state = new PlayerState
             {
                 Health = model.Health,
+                Damage = model.Damage,
                 ModelId = model.Id,
                 MoveSpeed = model.MoveSpeed,
                 Position = PlayerView.transform.position
             };
 
-            PlayerView.Guid = guid;
-            StatesService.PlayerState = state;
-            StatesService.CurrentGameState.CharacterStates.Add(guid, state);
+            StatesService.AddState(id, state);
         }
     }
 }

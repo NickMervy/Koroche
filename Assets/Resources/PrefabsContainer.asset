@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -23,7 +23,7 @@ MonoBehaviour:
     Damage: 10
     MoveSpeed: 10
     Id: Skeleton
-    Prefab: {fileID: 0}
+    Prefab: {fileID: 1967444696185214, guid: 4067cc616dcd8c74199819187c0932c9, type: 2}
   - Name: SkeletonClothed
     Health: 100
     Damage: 10

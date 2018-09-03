@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Contexts;
 using Models;
 using strange.extensions.command.impl;
 using Services;
@@ -18,7 +19,7 @@ namespace Controllers
             {
                 CallerScene = Constants.MenuScene,
                 TargetScene = Constants.DesertUona,
-                GameStartState = GameStartState.New
+                LevelBehaviour = new NewLevelBehaviour()
             });
         }
     }

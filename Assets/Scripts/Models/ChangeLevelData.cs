@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Contexts;
 using UniRx;
 using UnityEngine;
 
@@ -10,6 +11,6 @@ namespace Models
         public string CallerScene;
         public string TargetScene;
         public AsyncOperation Operation;
-        public GameStartState GameStartState;
+        public ILevelBehaviour LevelBehaviour;
     }
 }

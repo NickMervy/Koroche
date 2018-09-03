@@ -15,9 +15,3 @@ public sealed class Constants
     public readonly string SavesKey = "GameStates";
     public readonly string SavesPath = Application.persistentDataPath + "/Saves.che";
 }
-
-public enum GameStartState
-{
-    New,
-    Continue
-}

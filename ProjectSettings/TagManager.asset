@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Edges
+  - Combat
   - 
   - 
   - 
@@ -43,4 +43,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Koroche
+    uniqueID: 3008136441
     locked: 0

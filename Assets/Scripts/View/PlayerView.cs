@@ -1,20 +1,15 @@
 using System;
 using Models;
 using strange.extensions.mediation.impl;
+using UnityEngine;
 
 namespace View
 {
-    public class PlayerView : EventView
+    public class PlayerView : CharacterView
     {
         public event Action PlayerStart;
-        public string Guid { get; set; }
-        private PlayerMovementHandler _playerMovement;
 
-        protected override void Awake()
-        {
-            base.Awake();
-            _playerMovement = GetComponent<PlayerMovementHandler>();
-        }
+        [SerializeField] private PlayerMovementHandler _playerMovement;
 
         protected override void Start()
         {

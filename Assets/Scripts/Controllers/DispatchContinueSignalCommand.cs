@@ -1,3 +1,4 @@
+using Contexts;
 using Models;
 using strange.extensions.command.impl;
 using Signals;
@@ -15,7 +16,7 @@ namespace Controllers
             {
                 CallerScene = Constants.MenuScene,
                 TargetScene = Constants.DesertUona,
-                GameStartState = GameStartState.Continue
+                LevelBehaviour = new ContinueLevelBehaviour()
             });
         }
     }
